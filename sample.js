@@ -84,7 +84,7 @@ function saveIncludeDate() {
 }
 
 function redirectToPage2() {
-  window.location.href = 'sample.html';
+  window.location.href = 'index.html';
 }
 
 
