@@ -87,9 +87,7 @@ function redirectToPage2() {
   window.location.href = 'sample.html';
 }
 
-function redirectToPage1() {
-  window.location.href = 'index.html';
-}
+
 
 function generateResolutionNB() {
   const team = document.getElementById('teamInput').value || 'Team Name';
