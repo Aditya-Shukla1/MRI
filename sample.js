@@ -84,7 +84,7 @@ function saveIncludeDate() {
 }
 
 function redirectToPage2() {
-  window.location.href = 'nonBilling.html';
+  window.location.href = 'sample.html';
 }
 
 function redirectToPage1() {
