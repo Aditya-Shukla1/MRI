@@ -83,7 +83,7 @@ function generateResolutionNB() {
   const sysPart = `Sys/app affected:${sysAffected} <br /> <br />`;
   const tracePart = `Error stack trace: ${errtrace} <br /> <br />`;
   const scePart = `Affecetd Scenario: ${affectedScenario} <br /> <br />`;
-  const StePart = `Steps: ${steps} <br /> <br />`;
+  const stePart = `Steps: ${steps} <br /> <br />`;
   const actualPart = `Actual Result: ${actual} <br /> <br />`;
   const expectedPart = `Expected Result: ${expected} <br /> <br />`;
   const dPart = `Link to Design: ${design} <br /> <br />`;
@@ -94,7 +94,7 @@ function generateResolutionNB() {
   
 
 
-  const resolutionOutput =  impPart + cusPart + sysPart + tracePart + scePart + StePart +
+  const resolutionOutput =  impPart + cusPart + sysPart + tracePart + scePart + stePart +
    actualPart + expectedPart + dPart + canPart + lPart + soPart + errorPart;
 
   document.getElementById('output').innerHTML = resolutionOutput;
