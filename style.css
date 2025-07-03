@@ -35,6 +35,7 @@ h1 {
 
 
 label {
+   color: var(--text-color);
  margin-top: 8px;
     margin-bottom: 5px;
     color: #333;
@@ -42,7 +43,7 @@ label {
     text-align: left;
     margin-right: 140px;
     display: inline-block;
-    color: var(--text-color);
+    
 
   
 }
