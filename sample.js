@@ -2,19 +2,18 @@ generateResolutionNB();
 
 function clearFields() {
 
-  document.getElementById('impact').value = '';
-  document.getElementById('cusImpact').value = '';
-  document.getElementById('sysAffected').value = '';
-  document.getElementById('errtrace').value = '';
-  document.getElementById('affectedScenario').value = '';
+  document.getElementById('issueDescription').value = '';
+  document.getElementById('scenario').value = '';
+  document.getElementById('analysis').value = '';
   document.getElementById('steps').value = '';
+  document.getElementById('design').value = '';
+  document.getElementById('impact').value = '';
+  document.getElementById('example').value = '';
+  document.getElementById('impactList').value = '';
+  document.getElementById('waDetails').value = '';
   document.getElementById('actual').value = '';
   document.getElementById('expected').value = '';
-  document.getElementById('design').value = '';
-  document.getElementById('can').value = '';
-  document.getElementById('link').value = '';
-  document.getElementById('soid').value = '';
-  document.getElementById('errmsg').value = '';
+  document.getElementById('priority').value = '';
 
   generateResolutionNB();
 }
@@ -38,6 +37,26 @@ function copyToClipboard() {
   }, 1500);
 }
 
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
+  }
+
+  function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      document.querySelector('.theme-toggle').textContent = '☀️';
+    } else {
+      document.querySelector('.theme-toggle').textContent = '🌙';
+    }
+  }
+
+  loadTheme();
+
+/* 
 // Theme
 function toggleTheme() {
   const body = document.body;
@@ -57,45 +76,43 @@ if (isDarkMode) {
 const themeToggle = document.querySelector('.theme-toggle');
 themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
 
-
+ */
 
 
 function generateResolutionNB() {
-  const impact = document.getElementById('impact').value || 'N/A';
-  const cusImpact = document.getElementById('cusImpact').value || 'N/A';
-  const sysAffected = document.getElementById('sysAffected').value || 'N/A';
-  const errtrace = document.getElementById('errtrace').value || 'N/A';
-  const affectedScenario = document.getElementById('affectedScenario').value || 'N/A';
+  const issueDescription = document.getElementById('issueDescription').value || 'N/A';
+  const scenario = document.getElementById('scenario').value || 'N/A';
+  const analysis = document.getElementById('analysis').value || 'N/A';
   const steps = document.getElementById('steps').value || 'N/A';
-  const actual = document.getElementById('actual').value || 'N/A';
-  const expected= document.getElementById('expected').value || 'N/A';
   const design = document.getElementById('design').value || 'N/A';
-  const can = document.getElementById('can').value || 'N/A';
-  const link = document.getElementById('link').value || 'N/A';
-  const soid = document.getElementById('soid').value || 'N/A';
-  const errmsg = document.getElementById('errmsg').value || 'N/A';
+  const impact = document.getElementById('impact').value || 'N/A';
+  const example = document.getElementById('example').value || 'N/A';
+  const impactList= document.getElementById('impactList').value || 'N/A';
+  const waDetails = document.getElementById('waDetails').value || 'N/A';
+  const actual = document.getElementById('actual').value || 'N/A';
+  const expected = document.getElementById('expected').value || 'N/A';
+  const priority = document.getElementById('priority').value || 'N/A';
 
 
 
 
-  const impPart = `Impact: ${impact} <br /> <br />`;
-  const cusPart = `Customer Impact: ${cusImpact} <br /> <br />`;
-  const sysPart = `Sys/app affected:${sysAffected} <br /> <br />`;
-  const tracePart = `Error stack trace: ${errtrace} <br /> <br />`;
-  const scePart = `Affecetd Scenario: ${affectedScenario} <br /> <br />`;
-  const stePart = `Steps: ${steps} <br /> <br />`;
-  const actualPart = `Actual Result: ${actual} <br /> <br />`;
-  const expectedPart = `Expected Result: ${expected} <br /> <br />`;
-  const dPart = `Link to Design: ${design} <br /> <br />`;
-  const canPart = `Ex Customer: ${can} <br /> <br />`;
-  const lPart = `BSS/OSS link: ${link} <br /> <br />`;
-  const soPart = `Sales order id: ${soid} <br /> <br />`;
-  const errorPart = `Error Msg: ${errmsg} <br /> <br />`;
+  const impPart = `Issue Description: ${issueDescription} <br /> <br />`;
+  const cusPart = `Scenario: ${scenario} <br /> <br />`;
+  const sysPart = `Analysis:${analysis} <br /> <br />`;
+  const tracePart = `Steps: ${steps} <br /> <br />`;
+  const scePart = `Design: ${design} <br /> <br />`;
+  const StePart = `Impact: ${impact} <br /> <br />`;
+  const actualPart = `Example: ${example} <br /> <br />`;
+  const expectedPart = `Impact List: ${impactList} <br /> <br />`;
+  const dPart = `WA Details: ${waDetails} <br /> <br />`;
+  const canPart = `Actual: ${actual} <br /> <br />`;
+  const lPart = `Expected: ${expected} <br /> <br />`;
+  //const soPart = `Sales order id: ${priority} <br /> <br />`;
   
 
 
-  const resolutionOutput =  impPart + cusPart + sysPart + tracePart + scePart + stePart +
-   actualPart + expectedPart + dPart + canPart + lPart + soPart + errorPart;
+  const resolutionOutput =  impPart + cusPart + sysPart + tracePart + scePart + StePart +
+   actualPart + expectedPart + dPart + canPart + lPart ;
 
   document.getElementById('output').innerHTML = resolutionOutput;
 }
