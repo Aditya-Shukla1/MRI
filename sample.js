@@ -116,5 +116,3 @@ function generateResolutionNB() {
 
   document.getElementById('output').innerHTML = resolutionOutput;
 }
-
-
