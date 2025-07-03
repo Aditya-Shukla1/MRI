@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,75 +9,85 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
+    
 <body>
-  <div class="top-bar">
-   
-  </div>
   <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
 
-  <div id="pageContent">
-    <h1>JIRA PR MRI Generator - Non Billing</h1>
+  <h1>JIRA PR MRI Generator - Non Billing</h1>
 
+  <div class="form-row">
+    <label for="issueDescription">Issue Description:</label>
+    <input type="text" id="issueDescription" placeholder="Describe in brief what is the issue" oninput="generateResolutionNB()" required />
+  </div>
 
-    <label for="impact">Impacted Population:</label>
-    <input type="text" id="impact" placeholder="Actual & Potential" oninput="generateResolutionNB()" required>    <br />
+  <div class="form-row">
+    <label for="scenario">Scenario:</label>
+    <input type="text" id="scenario" placeholder="Flow in which issue observed" oninput="generateResolutionNB()" required />
+  </div>
 
-    <label for="cusImpact">Customer Impact</label>
-    <input type="text" id="cusImpact" placeholder="eg. Customer out of service,product can not sold ,etc" oninput="generateResolutionNB()" required><br />
+  <div class="form-row">
+    <label for="analysis">L2 Analysis:</label>
+    <textarea id="analysis" rows="3" placeholder="Root cause identification done by ART side. Analysis and observation details. Dynatrace link if applicable." oninput="generateResolutionNB()" required></textarea>
+  </div>
 
-    <label for="sysAffected">System or application Affected:</label>
-    <input type="text" id="sysAffected" placeholder="System Affected" oninput="generateResolutionNB()" required>    <br />
-    
-    <label for="errtrace">Error StackTrace:</label>
-    <input type="text" id="errtrace" placeholder="Error Stack Trace" oninput="generateResolutionNB()"><br />
+  <div class="form-row">
+    <label for="steps">Steps to reproduce issue:</label>
+    <input type="text" id="steps" placeholder="If yes, specify" oninput="generateResolutionNB()" required />
+  </div>
 
-    <label for="affectedScenario">Affected scenario description:</label>
-    <input type="text" id="affectedScenario" placeholder="ex. inflight cancel sales orderstuck/move impacted,etc " oninput="generateResolutionNB()" required>
-    <br />
-    
-    <label for="steps">Steps To Reproduce:</label>
-    <input type="text" id="steps" placeholder="Steps To Reproduce" oninput="generateResolutionNB()"><br />
+  <div class="form-row">
+    <label for="design">Design Docs:</label>
+    <input type="text" id="design" placeholder="Link to design document if applicable" oninput="generateResolutionNB()" />
+  </div>
 
-    
+  <div class="form-row">
+    <label for="impact">Impact details:</label>
+    <input type="text" id="impact" placeholder="Describe the impact because of the issue (Customer impact/revenue impact)" oninput="generateResolutionNB()" required />
+  </div>
+
+  <div class="form-row">
+    <label for="example">Examples:</label>
+    <input type="text" id="example" placeholder="Provide examples if any" oninput="generateResolutionNB()" />
+  </div>
+
+  <div class="form-row">
+    <label for="impactList">Impact List:</label>
+    <textarea id="impactList" rows="4" placeholder="1: Provide impact list of the issue (Query or report preferable)
+2: Frequency and recent occurrence of the issue
+3: If IL is not possible then highlight the similar + add current impacted cases" oninput="generateResolutionNB()"></textarea>
+  </div>
+
+  <div class="form-row">
+    <label for="waDetails">WA Details:</label>
+    <textarea id="waDetails" rows="4" placeholder="1: If WA is available, provide detailed steps + responsible party
+2: If WA is not available:
+- (Non-NC PRs) Specify similar + request WA
+- (NC PRs) Raise task if not logged. Root cause via PR/JIRA" oninput="generateResolutionNB()"></textarea>
+  </div>
+
+  <div class="form-row">
     <label for="actual">Actual Result:</label>
-    <input type="text" id="actual" placeholder="Actual Result" oninput="generateResolutionNB()"><br />
+    <input type="text" id="actual" placeholder="Actual Result" oninput="generateResolutionNB()" />
+  </div>
 
+  <div class="form-row">
     <label for="expected">Expected Result:</label>
-    <input type="text" id="expected" placeholder="Expected Result" oninput="generateResolutionNB()"><br />
+    <input type="text" id="expected" placeholder="Expected Result" oninput="generateResolutionNB()" />
+  </div>
 
-    <label for="design">Link to design</label>
-    <input type="text" id="design" placeholder="Link to design" oninput="generateResolutionNB()"><br />
-
-
-
-    <label for="can">Example CAN:</label>
-    <input type="text" id="can" placeholder="Customer Account Number" oninput="generateResolutionNB()"><br />
-
-    <label for="link">BSS Link/ OSS link of related issue :</label>
-    <input type="text" id="link" placeholder="( if required )" oninput="generateResolutionNB()"><br />
-
-    <label for="soid">Sales Order Id/name:</label>
-    <input type="text" id="soid" placeholder="SO Id/name" oninput="generateResolutionNB()"><br />
-    
-    <label for="errmsg">Error Message:</label>
-    <input type="text" id="errmsg" placeholder="Error Message" oninput="generateResolutionNB()"><br />
-
-    
-   
-   
-    
-        <!--<button onclick="generateResolutionNB()" type="submit">Generate Resolution</button> -->
-    <button id="clearFieldsBtn" onclick="clearFields()">Clear Fields</button>
-    <button id="copyToClipboardBtn" onclick="copyToClipboard()">Copy to Clipboard</button>
-
-    <div id="output"></div>
-    <div id="statusMessage"></div>
+  <div class="form-row">
+    <label for="priority">Priority:</label>
+    <input type="text" id="priority" placeholder="Set the priority of JIRA based on the impact" oninput="generateResolutionNB()" required />
   </div>
 
  
 
+  <button id="clearFieldsBtn"  onclick="clearFields()">Clear Fields</button>
+  <button id="copyToClipboardBtn"  onclick="copyToClipboard()">Copy to Clipboard</button>
+
+  <div id="output"></div>
+  <div id="statusMessage"></div>
 
   <script src="sample.js"></script>
 </body>
-
 </html>
