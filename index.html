@@ -9,11 +9,17 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-    
 <body>
   <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
 
-  <h1>JIRA PR MRI Generator - Non Billing</h1>
+  <div class="container">
+    <h1>JIRA PR MRI Generator - Non Billing</h1>
+    
+    <p class="info-text">
+      Add PR reference in JIRA PR summary<br>
+      Ext. Ref: same as RF PR number<br>
+      Priority: Set the priority of the Jira based on the impact
+    </p>
 
   <div class="form-row">
     <label for="issueDescription">Issue Description:</label>
@@ -27,7 +33,7 @@
 
   <div class="form-row">
     <label for="analysis">L2 Analysis:</label>
-    <textarea id="analysis" rows="3" placeholder="Root cause identification done by ART side. Analysis and observation details. Dynatrace link if applicable." oninput="generateResolutionNB()" required></textarea>
+    <input type="text" id="analysis" placeholder="Root cause identification done by ART side. Analysis and observation details. Dynatrace link if applicable." oninput="generateResolutionNB()" required />
   </div>
 
   <div class="form-row">
@@ -52,7 +58,7 @@
 
   <div class="form-row">
     <label for="impactList">Impact List:</label>
-    <textarea id="impactList" rows="4" placeholder="1: Provide impact list of the issue (Query or report preferable)
+    <textarea id="impactList" rows="3" placeholder="1: Provide impact list of the issue (Query or report preferable)
 2: Frequency and recent occurrence of the issue
 3: If IL is not possible then highlight the similar + add current impacted cases" oninput="generateResolutionNB()"></textarea>
   </div>
@@ -75,18 +81,14 @@
     <input type="text" id="expected" placeholder="Expected Result" oninput="generateResolutionNB()" />
   </div>
 
-  <div class="form-row">
-    <label for="priority">Priority:</label>
-    <input type="text" id="priority" placeholder="Set the priority of JIRA based on the impact" oninput="generateResolutionNB()" required />
+  <div class="button-container">
+    <button id="clearFieldsBtn"  onclick="clearFields()">Clear Fields</button>
+    <button id="copyToClipboardBtn"  onclick="copyToClipboard()">Copy to Clipboard</button>
   </div>
-
- 
-
-  <button id="clearFieldsBtn"  onclick="clearFields()">Clear Fields</button>
-  <button id="copyToClipboardBtn"  onclick="copyToClipboard()">Copy to Clipboard</button>
 
   <div id="output"></div>
   <div id="statusMessage"></div>
+  </div>
 
   <script src="sample.js"></script>
 </body>
