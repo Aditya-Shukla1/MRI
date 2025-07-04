@@ -13,7 +13,6 @@ function clearFields() {
   document.getElementById('waDetails').value = '';
   document.getElementById('actual').value = '';
   document.getElementById('expected').value = '';
-  document.getElementById('priority').value = '';
 
   generateResolutionNB();
 }
@@ -31,9 +30,11 @@ function copyToClipboard() {
 
   const statusMessage = document.getElementById('statusMessage');
   statusMessage.textContent = 'Resolution copied to clipboard!';
+  statusMessage.classList.add('show');
 
   setTimeout(() => {
     statusMessage.textContent = '';
+    statusMessage.classList.remove('show');
   }, 1500);
 }
 
@@ -56,63 +57,64 @@ function toggleTheme() {
 
   loadTheme();
 
-/* 
-// Theme
-function toggleTheme() {
-  const body = document.body;
-  body.classList.toggle('dark-mode');
-  const isDarkMode = body.classList.contains('dark-mode');
-  localStorage.setItem('darkMode', isDarkMode);
-
-  const themeToggle = document.querySelector('.theme-toggle');
-  themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-}
-
-const isDarkMode = JSON.parse(localStorage.getItem('darkMode'));
-if (isDarkMode) {
-  document.body.classList.add('dark-mode');
-}
-
-const themeToggle = document.querySelector('.theme-toggle');
-themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-
- */
-
-
 function generateResolutionNB() {
-  const issueDescription = document.getElementById('issueDescription').value || 'N/A';
-  const scenario = document.getElementById('scenario').value || 'N/A';
-  const analysis = document.getElementById('analysis').value || 'N/A';
-  const steps = document.getElementById('steps').value || 'N/A';
-  const design = document.getElementById('design').value || 'N/A';
-  const impact = document.getElementById('impact').value || 'N/A';
-  const example = document.getElementById('example').value || 'N/A';
-  const impactList= document.getElementById('impactList').value || 'N/A';
-  const waDetails = document.getElementById('waDetails').value || 'N/A';
-  const actual = document.getElementById('actual').value || 'N/A';
-  const expected = document.getElementById('expected').value || 'N/A';
-  const priority = document.getElementById('priority').value || 'N/A';
+  const issueDescription = document.getElementById('issueDescription').value.trim();
+  const scenario = document.getElementById('scenario').value.trim();
+  const analysis = document.getElementById('analysis').value.trim();
+  const steps = document.getElementById('steps').value.trim();
+  const design = document.getElementById('design').value.trim();
+  const impact = document.getElementById('impact').value.trim();
+  const example = document.getElementById('example').value.trim();
+  const impactList = document.getElementById('impactList').value.trim();
+  const waDetails = document.getElementById('waDetails').value.trim();
+  const actual = document.getElementById('actual').value.trim();
+  const expected = document.getElementById('expected').value.trim();
 
+  let resolutionOutput = '';
 
-
-
-  const impPart = `Issue Description: ${issueDescription} <br /> <br />`;
-  const cusPart = `Scenario: ${scenario} <br /> <br />`;
-  const sysPart = `Analysis:${analysis} <br /> <br />`;
-  const tracePart = `Steps: ${steps} <br /> <br />`;
-  const scePart = `Design: ${design} <br /> <br />`;
-  const StePart = `Impact: ${impact} <br /> <br />`;
-  const actualPart = `Example: ${example} <br /> <br />`;
-  const expectedPart = `Impact List: ${impactList} <br /> <br />`;
-  const dPart = `WA Details: ${waDetails} <br /> <br />`;
-  const canPart = `Actual: ${actual} <br /> <br />`;
-  const lPart = `Expected: ${expected} <br /> <br />`;
-  //const soPart = `Sales order id: ${priority} <br /> <br />`;
+  if (issueDescription) {
+    resolutionOutput += `Issue Description: ${issueDescription} <br /> <br />`;
+  }
   
-
-
-  const resolutionOutput =  impPart + cusPart + sysPart + tracePart + scePart + StePart +
-   actualPart + expectedPart + dPart + canPart + lPart ;
+  if (scenario) {
+    resolutionOutput += `Scenario: ${scenario} <br /> <br />`;
+  }
+  
+  if (analysis) {
+    resolutionOutput += `Analysis: ${analysis} <br /> <br />`;
+  }
+  
+  if (steps) {
+    resolutionOutput += `Steps: ${steps} <br /> <br />`;
+  }
+  
+  if (design) {
+    resolutionOutput += `Design: ${design} <br /> <br />`;
+  }
+  
+  if (impact) {
+    resolutionOutput += `Impact: ${impact} <br /> <br />`;
+  }
+  
+  if (example) {
+    resolutionOutput += `Example: ${example} <br /> <br />`;
+  }
+  
+  if (impactList) {
+    resolutionOutput += `Impact List: ${impactList} <br /> <br />`;
+  }
+  
+  if (waDetails) {
+    resolutionOutput += `WA Details: ${waDetails} <br /> <br />`;
+  }
+  
+  if (actual) {
+    resolutionOutput += `Actual: ${actual} <br /> <br />`;
+  }
+  
+  if (expected) {
+    resolutionOutput += `Expected: ${expected} <br /> <br />`;
+  }
 
   document.getElementById('output').innerHTML = resolutionOutput;
 }
