@@ -1,51 +1,72 @@
 :root {
-  --bg-color: #f7f7f7;
-  --text-color: #000;
-  --input-bg: #fff;
-  --border-color: #ccc;
+  --bg-color: linear-gradient(135deg, #a8c8ec 0%, #b8a9d9 100%);
+  --text-color: #2d3748;
+  --input-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --success-color: #10b981;
+  --success-hover: #059669;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 body.dark {
-  --bg-color: #1e1e1e;
-  --text-color: #f0e7e7;
-  --input-bg: #2a2a2a;
-  --border-color: #444;
+  --bg-color: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  --text-color: #f7fafc;
+  --input-bg: #2d3748;
+  --border-color: #4a5568;
+  --card-bg: rgba(45, 55, 72, 0.95);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: var(--bg-color);
   color: var(--text-color);
-  margin: 20px auto 0px
+  margin: 0;
   padding: 20px;
-  transition: background 0.3s, color 0.3s;
-  ;
-  
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 
 
 h1 { 
-  margin-bottom: 24px;
-   text-align: center;
-
-  
+  margin-bottom: 32px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  padding: 40px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 label {
-   color: var(--text-color);
- margin-top: 8px;
-    margin-bottom: 5px;
-    color: #333;
-    width: 200px;
-    text-align: left;
-    margin-right: 140px;
-    display: inline-block;
-    
-
-  
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
 }
 
 
@@ -53,119 +74,141 @@ label {
 input[type="text"],
 textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px 16px;
   font-size: 14px;
   background: var(--input-bg);
   color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
   box-sizing: border-box;
-   
-  
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #a0aec0;
+  opacity: 1;
+}
+
+body.dark input[type="text"]::placeholder,
+body.dark textarea::placeholder {
+  color: #718096;
+  opacity: 1;
 }
 
 textarea {
   resize: vertical;
 }
 
-
-
-
-
-#output, #statusMessage {
-  margin-top: 20px;
+.theme-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+  font-size: 24px;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+  z-index: 1000;
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 20px;
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .form-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  gap: 20px;
-  width: 70%;
+  margin-bottom: 24px;
 }
-
-
 
 .form-row label {
-  width: 200px; /* fixed width to align all labels */
-  font-weight: bold;
-  margin-left: 100px;
-}
-
-.form-row input[type="text"],
-.form-row textarea {
-  flex: 1;
-  padding: 8px;
-  font-size: 14px;
-  background: var(--input-bg);
+  font-weight: 600;
+  margin-bottom: 8px;
   color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  display: block;
 }
 
 #output {
-    margin-top: 20px;
-    padding: 15px;   
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: left;
-    width: 60%;
-    margin: 20px auto 0px;
+  margin-top: 32px;
+  padding: 24px;   
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  box-shadow: var(--shadow);
 }
 
+#statusMessage {
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--success-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#statusMessage.show {
+  opacity: 1;
+}
 
 button {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;   
-    
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-shadow: var(--shadow);
 }
 
 button:hover {
-    background-color: #45a049;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
 }
 
 #clearFieldsBtn {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    border-radius: 4px;
-    justify-content: center;
+  background: linear-gradient(135deg, var(--danger-color), #f87171);
+  color: white;
 }
 
 #clearFieldsBtn:hover {
-    background-color: #c43227;
+  background: linear-gradient(135deg, var(--danger-hover), var(--danger-color));
 }
 
 #copyToClipboardBtn {
-    padding: 10px;
-   
-    font-size: 16px;
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 4px;
-    justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color), #60a5fa);
+  color: white;
 }
 
 #copyToClipboardBtn:hover {
-    background-color: #1a7bca;
+  background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
